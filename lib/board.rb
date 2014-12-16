@@ -13,4 +13,8 @@ class Board
     @grid
   end
 
+  def place_ship_unit(grid_ref)
+    grid_ref.ship_in_cell!
+  end
+
 end
