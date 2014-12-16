@@ -31,6 +31,15 @@ class Board
       end
     else raise "Unrecognised orientation"
     end
+    raise 'Cannot place, ship goes outside grid' if array.length != size
+    array
+  end
+
+  def check_footprint_content(footprint)
+    array = []
+    footprint.each do |grid_ref|
+      array << grid[grid_ref].content
+    end
     array
   end
 
