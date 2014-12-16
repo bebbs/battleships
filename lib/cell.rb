@@ -18,4 +18,9 @@ class Cell
     @hit = true
   end
 
+  def ship_in_cell! 
+    raise 'This cell already has a ship in it.' if content == :ship
+    @content = :ship
+  end
+
 end

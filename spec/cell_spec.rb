@@ -28,5 +28,19 @@ let(:cell) {Cell.new}
     end
 
   end
-  
+
+  context 'receiving ships' do
+
+    before(:each) {cell.ship_in_cell!}
+
+    it 'should be capable of receiving a ship in it' do
+      expect(cell.content).to eq(:ship)
+    end
+
+    it 'should only be capble of receiving a ship once' do
+      expect(lambda {cell.ship_in_cell!}).to raise_error(RuntimeError, 'This cell already has a ship in it.')
+    end
+    
+  end
+
 end
