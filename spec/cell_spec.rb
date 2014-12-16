@@ -15,5 +15,18 @@ let(:cell) {Cell.new}
     end
 
   end
+
+  context 'a cell can be' do
+
+    before(:each) {cell.hit!}
+    it 'hit' do
+      expect(cell).to be_hit
+    end
+
+    it 'hit only once' do
+      expect(lambda {cell.hit!}).to raise_error(RuntimeError, 'This cell has already been hit.')
+    end
+
+  end
   
 end

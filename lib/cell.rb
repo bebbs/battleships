@@ -13,4 +13,9 @@ class Cell
     @hit
   end
 
+  def hit!
+    raise 'This cell has already been hit.' if hit?
+    @hit = true
+  end
+
 end
