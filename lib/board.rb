@@ -48,7 +48,9 @@ class Board
   end
 
   def footprint_unoccupied(array)
-    array.any? {|content| content == :water }
+    array.all? {|content| content == :water }
   end
 
 end
+
+# place_ship wrapper method
