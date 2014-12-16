@@ -20,6 +20,10 @@ describe Board do
       expect(grid_ref.content).to eq(:ship)
     end
 
+    it 'should know which cells to place a ship in' do
+      expect(board.footprint(3, :v, :A1)).to eq([:A1, :A2, :A3])
+    end
+
   end
 
 end
