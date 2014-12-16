@@ -30,4 +30,17 @@ describe Ship do
 
   end
 
+  context 'can be' do
+
+    it 'hit by a shot' do
+      ship.hit!
+      expect(ship.hits_received?).to eq(1)
+    end
+
+    it 'sunk' do
+      ship.size?.times { ship.hit! }
+      expect(ship).to be_sunk
+    end
+  end
+
 end

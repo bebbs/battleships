@@ -28,4 +28,12 @@ class Ship
     @hits_received
   end
 
+  def hit!
+    @hits_received += 1
+  end
+
+  def sunk?
+    hits_received? == size?
+  end
+
 end
