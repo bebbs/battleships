@@ -6,11 +6,11 @@ class Fleet
   end
 
   def create_ships
-    @ship_array << Ship.new(:aircraft_carrier)
-    @ship_array << Ship.new(:battleship)
-    2.times {@ship_array << Ship.new(:destroyer)}
-    @ship_array << Ship.new(:submarine)
-    4.times {@ship_array << Ship.new(:patrol_boat)}
+    @ship_array << Ship.aircraft_carrier
+    @ship_array << Ship.battleship
+    2.times {@ship_array << Ship.destroyer}
+    @ship_array << Ship.submarine
+    4.times {@ship_array << Ship.patrol_boat}
   end
 
   def ship_array

@@ -14,6 +14,7 @@ class Board
   end
 
   def footprint(size, orientation, start_cell)
+    # coords = [start_cell]
     orientation == :h ? footprint_horizontal(size, start_cell) : footprint_vertical(size, start_cell)
     outside_grid(size)
   end
