@@ -3,21 +3,6 @@ require 'board'
 describe Board do
 
   let(:board) {Board.new}
-  
-  context 'refactoring place ships methods' do
-
-    it 'should return the expected coordinates for a vertical ship of size 3' do
-      expect(board.coordinates(3, :A1, :vertical)).to eq([:A1, :A2, :A3])
-    end
-
-  end
-
-
-
-
-
-
-
 
   context 'a grid when initialised should' do
   
@@ -26,13 +11,21 @@ describe Board do
     end
 
   end
+  
+  context 'refactoring place ships methods' do
+
+    it 'should return the expected coordinates for a vertical ship of size 3' do
+      expect(board.coordinates(3, :A1, :vertical)).to eq([:A1, :A2, :A3])
+    end
+
+    it 'should return the expected coordinates for a vertical ship of size 5' do
+      expect(board.coordinates(5, :C2, :horizontal)).to eq([:C2, :D2, :E2, :F2, :G2])
+    end
+
+  end
 
   context 'placing ships' do
 
-    it 'should know which cells to place a ship in' do
-      board.footprint(3, :v, :A1)
-      expect(board.footprint_array).to eq([:A1, :A2, :A3])
-    end
 
     it 'should return an error if footprint goes outside the grid' do
       expect{board.footprint(4, :h, :I6)}.to raise_error(RuntimeError, 'Cannot place, ship goes outside grid')

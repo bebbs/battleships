@@ -15,11 +15,16 @@ class Board
 
   def coordinates(size, start_cell, orientation)
     coords = [start_cell]
-    until coords.length == size
-    previous_cell = coords.last.to_s
-    coords << previous_cell.next.to_sym   
-     end
-     coords
+    (size -1).times {coords << next_cell(coords, orientation)}
+    coords
+  end
+
+  def next_cell(coords, orientation)
+    orientation == :vertical ? coords.last.next.to_sym : next_horizontal(coords)
+  end
+
+  def next_horizontal(coords)
+    coords.last.to_s.reverse.next.reverse.to_sym
   end
 
 
