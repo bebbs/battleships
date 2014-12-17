@@ -16,6 +16,7 @@ class Board
   def coordinates(size, start_cell, orientation)
     coords = [start_cell]
     (size -1).times {coords << next_cell(coords, orientation)}
+    within_grid(coords)
     coords
   end
 
@@ -27,6 +28,9 @@ class Board
     coords.last.to_s.reverse.next.reverse.to_sym
   end
 
+  def within_grid(coords)
+    raise 'You cannot place a ship outside the grid' unless grid.keys & coords == coords
+  end
 
   def footprint(size, orientation, start_cell)
     coords = [start_cell]

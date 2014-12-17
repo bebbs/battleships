@@ -22,6 +22,10 @@ describe Board do
       expect(board.coordinates(5, :C2, :horizontal)).to eq([:C2, :D2, :E2, :F2, :G2])
     end
 
+    it 'should recognise if a ship is going outside the grid' do
+      expect{board.within_grid([:A9, :A10, :A11])}.to raise_error(RuntimeError, 'You cannot place a ship outside the grid')
+    end
+
   end
 
   context 'placing ships' do
