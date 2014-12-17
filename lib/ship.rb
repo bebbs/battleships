@@ -1,4 +1,7 @@
 class Ship
+
+  #SHIPS = {aircraft_carrier: 5, battleship: 4, submarine: 3, destroyer: 3, patrol_boat: 2}
+
   def initialize(type)
     @size = ship_size(type)
     @type = type
@@ -15,6 +18,11 @@ class Ship
       else raise 'Ship type not recognised!'
     end
   end
+
+  # def self.method_missing
+  #   new SHIPS[name] if SHIPS[name]
+  #   super
+  # end
 
   def size?
     @size

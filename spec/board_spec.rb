@@ -26,7 +26,6 @@ describe Board do
     end
 
     it 'should return an error if footprint goes outside the grid' do
-
       expect{board.footprint(4, :h, :I6)}.to raise_error(RuntimeError, 'Cannot place, ship goes outside grid')
     end
 
