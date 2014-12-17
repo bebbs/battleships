@@ -30,8 +30,8 @@ class Cell
     @ship_object = ship
   end
 
-  def ship_in_cell?
-    raise 'This cell already has a ship in it.' if ship_object != nil
+  def ship_in_cell
+    ship_object != nil
   end
   
   def ship_or_water

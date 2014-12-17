@@ -38,10 +38,6 @@ let(:cell) {Cell.new}
       expect(cell.content).to eq(:ship)
     end
 
-    it 'should only be capble of receiving a ship once' do
-      expect{cell.ship_in_cell?}.to raise_error(RuntimeError, 'This cell already has a ship in it.')
-    end
-
   end
 
   context 'receiving a specific ship' do

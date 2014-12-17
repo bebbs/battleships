@@ -26,6 +26,16 @@ describe Board do
       expect{board.within_grid([:A9, :A10, :A11])}.to raise_error(RuntimeError, 'You cannot place a ship outside the grid')
     end
 
+    it 'should know that the coordinates are clear, if there are no ships' do
+      expect([:A1, :A2, :A3].all? {|cell| board.grid[cell].ship_or_water == :water}).to be true
+    end
+
+    it 'should know that the coordinates aren\'t clear, if there are ships' do
+      ship = double(:ship)
+      board.grid[:A1].ship_in_cell!(ship)
+      expect(board.grid[:A1].ship_in_cell).to be true
+    end
+
   end
 
   context 'placing ships' do
