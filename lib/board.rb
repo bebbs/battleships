@@ -13,8 +13,8 @@ class Board
     end
   end
 
-  def place_ship_unit(grid_ref)
-    grid_ref.ship_in_cell!
+  def place_ship_unit(grid_ref, ship)
+    grid_ref.ship_in_cell!(ship)
   end
 
   def footprint(size, orientation, start_cell)

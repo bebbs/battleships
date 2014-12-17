@@ -3,6 +3,7 @@ class Cell
   def initialize 
     @content = :water
     @hit = false
+    @ship_object = nil
   end
 
   def content
@@ -18,9 +19,14 @@ class Cell
     @hit = true
   end
 
-  def ship_in_cell! 
+  def ship_in_cell!(ship) 
     raise 'This cell already has a ship in it.' if content == :ship
     @content = :ship
+    @ship_object = ship
+  end
+
+  def ship_object
+    @ship_object
   end
 
 end

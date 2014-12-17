@@ -24,23 +24,34 @@ let(:cell) {Cell.new}
     end
 
     it 'hit only once' do
-      expect(lambda {cell.hit!}).to raise_error(RuntimeError, 'This cell has already been hit.')
+      expect{cell.hit!}.to raise_error(RuntimeError, 'This cell has already been hit.')
     end
 
   end
 
   context 'receiving ships' do
 
-    before(:each) {cell.ship_in_cell!}
+    let(:ship) {double :ship}
+    before(:each) {cell.ship_in_cell!(ship)}
 
     it 'should be capable of receiving a ship in it' do
       expect(cell.content).to eq(:ship)
     end
 
     it 'should only be capble of receiving a ship once' do
-      expect(lambda {cell.ship_in_cell!}).to raise_error(RuntimeError, 'This cell already has a ship in it.')
+      expect{cell.ship_in_cell!(ship)}.to raise_error(RuntimeError, 'This cell already has a ship in it.')
     end
-    
+
+  end
+
+  context 'receiving a specific ship' do
+
+    it 'should know which ship object is placed in it' do
+      ship = double(:ship)
+      cell.ship_in_cell!(ship)
+      expect(cell.ship_object).to eq(ship)
+    end
+
   end
 
 end
