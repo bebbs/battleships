@@ -13,18 +13,6 @@ class Board
     end
   end
 
-  def footprint_array
-    @footprint_array
-  end
-
-  def footprint_content
-    @footprint_content
-  end
-
-  def place_ship_unit(grid_ref, ship)
-    grid_ref.ship_in_cell!(ship)
-  end
-
   def footprint(size, orientation, start_cell)
     orientation == :h ? footprint_horizontal(size, start_cell) : footprint_vertical(size, start_cell)
     outside_grid(size)

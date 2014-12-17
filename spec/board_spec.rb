@@ -14,13 +14,6 @@ describe Board do
 
   context 'placing ships' do
 
-    it 'should accept a ship placement instruction (of size 1)' do # how do we do a double gere?
-      grid_ref = board.grid[:A1]
-      ship = double(:ship)
-      board.place_ship_unit(grid_ref, ship)
-      expect(grid_ref.content).to eq(:ship)
-    end
-
     it 'should know which cells to place a ship in' do
       board.footprint(3, :v, :A1)
       expect(board.footprint_array).to eq([:A1, :A2, :A3])
