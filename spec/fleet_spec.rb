@@ -29,6 +29,17 @@ describe Fleet do
       expect(fleet).not_to be_sunk
     end
 
+    it 'ships are all sunk' do
+      allow(fleet).to receive(:ship_status_array).and_return([true, true, true, true, true, true, true, true, true])
+      expect(fleet).to be_sunk
+    end
+
+    it 'some, but not all ships are sunk' do
+      allow(fleet).to receive(:ship_status_array).and_return([true, false, true, false, true, false, true, false, true])
+      expect(fleet).not_to be_sunk
+    end
+
+
   end
  
 end

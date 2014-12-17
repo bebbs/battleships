@@ -23,7 +23,7 @@ class Fleet
 
   def ship_status
     @ship_status_array = []
-    @ship_array.each do |ship|
+    ship_array.each do |ship|
       @ship_status_array << ship.sunk?
     end
   end
