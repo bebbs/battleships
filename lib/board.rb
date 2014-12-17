@@ -2,27 +2,23 @@ class Board
 
   attr_reader :grid
 
-  def initialize
+  def initialize(content)
     @grid = {}
     columns = [*"A".."J"]
     rows = [*1..10]
-    columns.each {|l| rows.each {|n| @grid["#{l}#{n}".to_sym] = Cell.new} }
+    columns.each {|l| rows.each {|n| @grid["#{l}#{n}".to_sym] = content.new}}
     end
 
   def place_ship(ship, start_cell, orientation)
-    coords = [start_cell]
-    ((ship.size) -1).times {coords << next_cell(coords, orientation)}
+    coords = coordinates(ship, start_cell, orientation)
     put_on_grid_if_possible(coords, ship)
-    within_grid(coords)
-    check_coords_for_ships(coords)
-    place_ship_in_all_cells(coords, ship)
   end
 
-  # def coordinates(ship, start_cell, orientation)
-  #   coords = [start_cell]
-  #   ((ship.size) -1).times {coords << next_cell(coords, orientation)}
-  #   return coords
-  # end
+  def coordinates(ship, start_cell, orientation)
+    coords = [start_cell]
+    ((ship.size) -1).times {coords << next_cell(coords, orientation)}
+    coords
+  end
 
   def put_on_grid_if_possible(coords, ship)
     within_grid(coords)
