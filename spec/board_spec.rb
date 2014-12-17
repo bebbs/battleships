@@ -10,7 +10,10 @@ describe Board do
   let(:cellA1){double :cellA1}
   let(:cellA2){double :cellA2}
   let(:cellA3){double :cellA3}
-
+  let(:cellC4){double :cellC4, ship_or_water: :water}
+  let(:cellD4){double :cellD4, ship_or_water: :water}
+  let(:cellE4){double :cellE4, ship_or_water: :water}
+  let(:cellF4){double :cellF4, ship_or_water: :water}
 
   context 'a grid when initialised should' do
   
@@ -59,13 +62,17 @@ describe Board do
     end
 
     it 'should be able to place a ship in to a cell' do
+      board.grid[:A1] = cellA1
+      expect(cellA1).to receive(:ship_in_cell!).with(ship_double)
       board.place_ship_in_a_cell(:A1, ship_double)
-      expect(board.grid[:A1].ship_object).to eq(ship_double)
     end
 
     it 'should be able to place a ship in all its coordinates' do
+      board.grid[:A1], board.grid[:A2], board.grid[:A3] = cellA1, cellA2, cellA3
+      expect(cellA1).to receive(:ship_in_cell!).with(ship_double)
+      expect(cellA2).to receive(:ship_in_cell!).with(ship_double)
+      expect(cellA3).to receive(:ship_in_cell!).with(ship_double)
       board.place_ship_in_all_cells([:A1, :A2, :A3], ship_double)
-      expect([:A1, :A2, :A3].all? {|grid_ref| board.grid[grid_ref].ship_object == ship_double}).to be true
     end
  
   end
@@ -73,9 +80,13 @@ describe Board do
   context 'integration test for place_ship method' do
 
     it 'should place a ship in the cells when passed ship, start cell and orientation' do
+      board.grid[:C4], board.grid[:D4], board.grid[:E4], board.grid[:F4] = cellC4, cellD4, cellE4, cellF4
       ship_double = double :ship_double, size: 4
+      expect(cellC4).to receive(:ship_in_cell!).with(ship_double)
+      expect(cellD4).to receive(:ship_in_cell!).with(ship_double)
+      expect(cellE4).to receive(:ship_in_cell!).with(ship_double)
+      expect(cellF4).to receive(:ship_in_cell!).with(ship_double)
       board.place_ship(ship_double, :C4, :horizontal)
-      expect([:C4, :D4, :E4, :F4].all? {|grid_ref| board.grid[grid_ref].ship_object == ship_double}).to be true
     end
 
   end
