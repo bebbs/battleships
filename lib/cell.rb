@@ -14,6 +14,12 @@ class Cell
     @hit
   end
 
+  def ship_object
+    @ship_object
+  end
+
+
+
   def hit!
     raise 'This cell has already been hit.' if hit?
     @hit = true
@@ -27,9 +33,9 @@ class Cell
   def ship_in_cell?
     raise 'This cell already has a ship in it.' if ship_object != nil
   end
-
-  def ship_object
-    @ship_object
+  
+  def ship_or_water
+    ship_object != nil ? :ship : :water
   end
 
 end

@@ -48,14 +48,15 @@ describe Board do
       board.footprint(3, :v, :A1)
       board.footprint_array.each { |cell| board.grid[cell].ship_in_cell!(ship_double) }
       board.get_footprint_content(board.footprint_array)
-      expect(board.footprint_content.all? {|ship| ship == ship_double}).to eq(true)
+      expect(board.footprint_content.all? {|ship| ship == :ship}).to eq(true)
     end
 
     it 'should place a ship' do
       ship_double = double(:ship_double)
       allow(ship_double).to receive(:size?).and_return(3)
       board.attempt_place_ship(ship_double, :v, :A1)
-      expect(board.get_footprint_content([:A1, :A2, :A3]).all? {|ship| ship == ship_double}).to eq true 
+      board.get_footprint_content([:A1, :A2, :A3])
+      expect(board.footprint_content.all? {|ship| ship == :ship}).to eq true 
     end
 
   end

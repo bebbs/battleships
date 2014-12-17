@@ -30,39 +30,39 @@ class Board
     outside_grid(size)
   end
 
-  def footprint_horizontal(size, start_cell)
-    @footprint_array = []
-    @columns[@columns.index(start_cell.to_s.slice(0)), size].each do |column_ref|
-      @footprint_array << (column_ref + start_cell.to_s.slice(1)).to_sym
+    def footprint_horizontal(size, start_cell)
+      @footprint_array = []
+      @columns[@columns.index(start_cell.to_s.slice(0)), size].each do |column_ref|
+        @footprint_array << (column_ref + start_cell.to_s.slice(1)).to_sym
+      end
     end
-  end
 
-  def footprint_vertical(size, start_cell)
-    @footprint_array = []
-    @rows[@rows.index(start_cell.to_s.slice(1).to_i), size].each do |row_ref|
-      @footprint_array << (start_cell.to_s.slice(0) + row_ref.to_s).to_sym
+    def footprint_vertical(size, start_cell)
+      @footprint_array = []
+      @rows[@rows.index(start_cell.to_s.slice(1).to_i), size].each do |row_ref|
+        @footprint_array << (start_cell.to_s.slice(0) + row_ref.to_s).to_sym
+      end
     end
-  end
-
-  def outside_grid(size)
-    raise 'Cannot place, ship goes outside grid' if @footprint_array.length != size
-  end
-
-  def get_footprint_content(footprint)
-    @footprint_content = []
-    footprint.each do |grid_ref|
-      @footprint_content << grid[grid_ref].ship_object
-    end
-  end
-
-  def check_footprint_unoccupied(array)
-    array.all? {|content| content == :water }
-  end
 
   def check_footprint(size, footprint)
     outside_grid(size)
     get_footprint_content(footprint)
   end
+
+    def outside_grid(size)
+      raise 'Cannot place, ship goes outside grid' if @footprint_array.length != size
+    end
+
+    def get_footprint_content(footprint)
+      @footprint_content = []
+      footprint.each do |grid_ref|
+        @footprint_content << grid[grid_ref].ship_or_water
+      end
+    end
+
+    def check_footprint_unoccupied(array)
+      array.all? {|content| content == :water }
+    end
 
   def attempt_place_ship(ship, orientation, start_cell)
     footprint(ship.size?, orientation, start_cell)
