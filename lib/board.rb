@@ -13,8 +13,18 @@ class Board
     end
   end
 
+  def coordinates(size, start_cell, orientation)
+    coords = [start_cell]
+    until coords.length == size
+    previous_cell = coords.last.to_s
+    coords << previous_cell.next.to_sym   
+     end
+     coords
+  end
+
+
   def footprint(size, orientation, start_cell)
-    # coords = [start_cell]
+    coords = [start_cell]
     orientation == :h ? footprint_horizontal(size, start_cell) : footprint_vertical(size, start_cell)
     outside_grid(size)
   end

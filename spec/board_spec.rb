@@ -4,6 +4,21 @@ describe Board do
 
   let(:board) {Board.new}
   
+  context 'refactoring place ships methods' do
+
+    it 'should return the expected coordinates for a vertical ship of size 3' do
+      expect(board.coordinates(3, :A1, :vertical)).to eq([:A1, :A2, :A3])
+    end
+
+  end
+
+
+
+
+
+
+
+
   context 'a grid when initialised should' do
   
     it 'have 100 cells' do

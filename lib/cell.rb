@@ -6,15 +6,15 @@ class Cell
     @ship_object = nil
   end
 
-  def content
+  def content # remove
     @content
   end
 
-  def hit?
+  def hit? # attr_reader
     @hit
   end
 
-  def ship_object
+  def ship_object # attr_reader
     @ship_object
   end
 
@@ -26,7 +26,7 @@ class Cell
   end
 
   def ship_in_cell!(ship) 
-    @content = :ship
+    @content = :ship # can remove
     @ship_object = ship
   end
 
