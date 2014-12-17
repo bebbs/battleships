@@ -31,10 +31,17 @@ describe Board do
     end
 
     it 'should know that the coordinates aren\'t clear, if there are ships' do
-      ship = double(:ship)
-      board.grid[:A1].ship_in_cell!(ship)
-      expect(board.grid[:A1].ship_in_cell).to be true
+      ship_double = double :ship_double
+      board.grid[:A1].ship_in_cell!(ship_double)
+      expect{board.check_coords_for_ships([:A1, :A2, :A3])}.to raise_error(RuntimeError, 'You cannot place a ship on another ship')
     end
+
+    it 'should be able to place a ship in to a cell' do
+      ship_double = double :ship_double
+      board.place_ship_in_cell(:A1, ship_double)
+      expect(board.grid[:A1].ship_object).to eq(ship_double)
+    end
+
 
   end
 

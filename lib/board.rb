@@ -17,6 +17,7 @@ class Board
     coords = [start_cell]
     (size -1).times {coords << next_cell(coords, orientation)}
     within_grid(coords)
+    check_coords_for_ships(coords)
     coords
   end
 
@@ -31,6 +32,25 @@ class Board
   def within_grid(coords)
     raise 'You cannot place a ship outside the grid' unless grid.keys & coords == coords
   end
+
+  def check_coords_for_ships(coords)
+    raise 'You cannot place a ship on another ship' if coords.any? { |grid_ref| grid[grid_ref].ship_or_water == :ship}
+  end
+
+  
+
+
+  def place_ship_in_cell(grid_ref, ship)
+    grid[grid_ref].ship_in_cell!(ship)
+  end
+
+
+
+
+
+
+
+
 
   def footprint(size, orientation, start_cell)
     coords = [start_cell]
