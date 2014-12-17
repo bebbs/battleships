@@ -31,23 +31,31 @@ describe Board do
     end
 
     it 'should know the content of all cells in the footprint' do
-      board.check_footprint_content([:A1, :A2, :A3])
+      board.get_footprint_content([:A1, :A2, :A3])
       expect(board.footprint_content).to eq([:water, :water, :water])
     end
 
     it 'should return true if the footprint is clear of ships' do
-      expect(board.footprint_unoccupied([:water, :water, :water])).to be true
+      expect(board.check_footprint_unoccupied([:water, :water, :water])).to be true
     end
 
     it 'should return false if the footprint is not clear of ships' do
-      expect(board.footprint_unoccupied([:water, :ship, :water])).to be false
+      expect(board.check_footprint_unoccupied([:water, :ship, :water])).to be false
     end
 
     it 'should be able to place a ship in it\'s footprint' do
+      ship_double = double(:ship)
       board.footprint(3, :v, :A1)
-      board.footprint_array.each { |cell| board.grid[cell].ship_in_cell! }
-      board.check_footprint_content(board.footprint_array)
-      expect(board.footprint_content.all? {|content| content == :ship}).to eq(true)
+      board.footprint_array.each { |cell| board.grid[cell].ship_in_cell!(ship_double) }
+      board.get_footprint_content(board.footprint_array)
+      expect(board.footprint_content.all? {|ship| ship == ship_double}).to eq(true)
+    end
+
+    it 'should place a ship' do
+      ship_double = double(:ship_double)
+      allow(ship_double).to receive(:size?).and_return(3)
+      board.attempt_place_ship(ship_double, :v, :A1)
+      expect(board.get_footprint_content([:A1, :A2, :A3]).all? {|ship| ship == ship_double}).to eq true 
     end
 
   end

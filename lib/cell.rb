@@ -20,9 +20,12 @@ class Cell
   end
 
   def ship_in_cell!(ship) 
-    raise 'This cell already has a ship in it.' if content == :ship
     @content = :ship
     @ship_object = ship
+  end
+
+  def ship_in_cell?
+    raise 'This cell already has a ship in it.' if ship_object != nil
   end
 
   def ship_object

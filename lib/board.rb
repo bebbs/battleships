@@ -13,6 +13,14 @@ class Board
     end
   end
 
+  def footprint_array
+    @footprint_array
+  end
+
+  def footprint_content
+    @footprint_content
+  end
+
   def place_ship_unit(grid_ref, ship)
     grid_ref.ship_in_cell!(ship)
   end
@@ -40,15 +48,32 @@ class Board
     raise 'Cannot place, ship goes outside grid' if @footprint_array.length != size
   end
 
-  def check_footprint_content(footprint)
+  def get_footprint_content(footprint)
     @footprint_content = []
     footprint.each do |grid_ref|
-      @footprint_content << grid[grid_ref].content
+      @footprint_content << grid[grid_ref].ship_object
     end
   end
 
-  def footprint_unoccupied(array)
+  def check_footprint_unoccupied(array)
     array.all? {|content| content == :water }
+  end
+
+  def check_footprint(size, footprint)
+    outside_grid(size)
+    get_footprint_content(footprint)
+  end
+
+  def attempt_place_ship(ship, orientation, start_cell)
+    footprint(ship.size?, orientation, start_cell)
+    check_footprint(ship.size?, footprint_array)
+    place_ship(ship)
+  end
+
+  def place_ship(ship)
+    footprint_array.each do |cell|
+      grid[cell].ship_in_cell!(ship)
+    end
   end
 
 end

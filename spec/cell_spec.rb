@@ -39,7 +39,7 @@ let(:cell) {Cell.new}
     end
 
     it 'should only be capble of receiving a ship once' do
-      expect{cell.ship_in_cell!(ship)}.to raise_error(RuntimeError, 'This cell already has a ship in it.')
+      expect{cell.ship_in_cell?}.to raise_error(RuntimeError, 'This cell already has a ship in it.')
     end
 
   end
