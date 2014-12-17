@@ -4,7 +4,7 @@ describe Cell do
 
 let(:cell) {Cell.new}
 
-  context 'a cell when initialised should' do
+  context 'a cell when initialised should:' do
     
     it 'contain water' do
       expect(cell.content).to eq(:water)
@@ -16,7 +16,7 @@ let(:cell) {Cell.new}
 
   end
 
-  context 'a cell can be' do
+  context 'a cell can be:' do
 
     before(:each) {cell.hit!}
     it 'hit' do
@@ -31,9 +31,10 @@ let(:cell) {Cell.new}
 
   context 'receiving ships' do
 
-    let(:ship) {double :ship}
-    before(:each) {cell.ship_in_cell!(ship)}
+    let(:ship_double) {double :ship_double}
+    before(:each) {cell.ship_in_cell!(ship_double)}
 
+#should rewrite this test to be based on ship_object / ship_or_water
     it 'should be capable of receiving a ship in it' do
       expect(cell.content).to eq(:ship)
     end

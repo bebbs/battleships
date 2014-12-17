@@ -23,9 +23,7 @@ describe Board do
 
   end
   
-  context 'refactoring place ships methods' do
-
-    let(:ship_double){double :ship_double}
+  context 'placing ships methods:' do
 
     it 'should return the expected coordinates for a vertical ship of size 3' do
       allow(ship_double).to receive(:size).and_return(3)
@@ -42,9 +40,7 @@ describe Board do
     end
 
     it 'should know that the coordinates are clear, if there are no ships' do
-      board.grid[:A1] = cellA1
-      board.grid[:A2] = cellA2
-      board.grid[:A3] = cellA3
+      board.grid[:A1], board.grid[:A2], board.grid[:A3] = cellA1, cellA2, cellA3
       allow(cellA1).to receive(:ship_or_water).and_return(:water)
       allow(cellA2).to receive(:ship_or_water).and_return(:water)
       allow(cellA3).to receive(:ship_or_water).and_return(:water)
@@ -52,9 +48,7 @@ describe Board do
     end
 
     it 'should know that the coordinates aren\'t clear, if there are ships' do
-      board.grid[:A1] = cellA1
-      board.grid[:A2] = cellA2
-      board.grid[:A3] = cellA3
+      board.grid[:A1], board.grid[:A2], board.grid[:A3] = cellA1, cellA2, cellA3
       allow(cellA1).to receive(:ship_or_water).and_return(:water)
       allow(cellA2).to receive(:ship_or_water).and_return(:ship)
       allow(cellA3).to receive(:ship_or_water).and_return(:water)  
@@ -81,7 +75,7 @@ describe Board do
 
     it 'should place a ship in the cells when passed ship, start cell and orientation' do
       board.grid[:C4], board.grid[:D4], board.grid[:E4], board.grid[:F4] = cellC4, cellD4, cellE4, cellF4
-      ship_double = double :ship_double, size: 4
+      allow(ship_double).to receive(:size).and_return(4)
       expect(cellC4).to receive(:ship_in_cell!).with(ship_double)
       expect(cellD4).to receive(:ship_in_cell!).with(ship_double)
       expect(cellE4).to receive(:ship_in_cell!).with(ship_double)
@@ -90,6 +84,5 @@ describe Board do
     end
 
   end
-
 
 end
