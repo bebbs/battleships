@@ -46,7 +46,7 @@ let(:cell) {Cell.new}
       allow(ship_double).to receive(:hit!)
       allow(ship_double).to receive(:sunk?).and_return(true)
       allow(ship_double).to receive(:type).and_return('patrol_boat')
-      expect(cell.hit!).to eq('You sunk my patrol_boat!')
+      expect(cell.hit!).to eq('You sank my patrol_boat!')
     end
 
     it 'on a cell with water in it, return a you missed message' do

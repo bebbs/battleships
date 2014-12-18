@@ -24,11 +24,19 @@ describe Player do
       expect(player.name).to eq(player1)
     end
 
+  context 'taking shots' do
+
     it 'receive a shot' do
       allow(board).to receive(:cell_object).with(:A1).and_return(cell_double)
       expect(board.cell_object(:A1)).to receive(:hit!)
       player.receive_shot(:A1)
     end
+
+    it 'should check to see if there is a winner' do
+      expect(fleet).to receive(:sunk?)
+    end
+
+  end
 
   end
 end

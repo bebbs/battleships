@@ -12,11 +12,8 @@ class Cell
     @hit = true
     if ship_in_cell
       ship_object.hit!
-      if ship_object.sunk?
-        "You sunk my #{ship_object.type}!"
-      else
-        "You hit my #{ship_object.type}!"
-      end
+      hit_ship_message
+      
     else
       'You missed!'
     end
@@ -33,5 +30,10 @@ class Cell
   def ship_or_water
     ship_object != nil ? :ship : :water
   end
+
+  def hit_ship_message
+      ship_object.sunk? ? "You sank my #{ship_object.type}!" : "You hit my #{ship_object.type}!"
+  end
+
 
 end
