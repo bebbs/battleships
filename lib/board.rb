@@ -55,18 +55,14 @@ class Board
   end
 
   def display_own_grid
-
     hit_values = []
     ship_values = []
      grid.keys.each {|g| hit_values << (grid[g].hit ? "H" : "-")}
      grid.keys.each {|g| ship_values << (grid[g].ship_in_cell ? "S" : "W")}
-  
     display_array = []
-    
     for i in 0..99 
       display_array << "#{grid.keys[i]}#{i < 90 ? " " : "" }#{hit_values[i]}#{ship_values[i]}"
     end
-
     p display_array[0..9]
     p display_array[10..19]
     p display_array[20..29]
@@ -77,7 +73,25 @@ class Board
     p display_array[70..79]
     p display_array[80..89]
     p display_array[90..99]
-
   end
+
+  def display_opponent_grid
+    hit_values = []
+    grid.keys.each {|g| hit_values << (grid[g].hit ? (grid[g].ship_in_cell ? "S" : "M") : "-")}
+    display_array = []
+    for i in 0..99 
+      display_array << "#{grid.keys[i]}#{i < 90 ? " " : "" }#{hit_values[i]}"
+    end
+    p display_array[0..9]
+    p display_array[10..19]
+    p display_array[20..29]
+    p display_array[30..39]
+    p display_array[40..49]
+    p display_array[50..59]
+    p display_array[60..69]
+    p display_array[70..79]
+    p display_array[80..89]
+    p display_array[90..99]
+  end 
 
 end
