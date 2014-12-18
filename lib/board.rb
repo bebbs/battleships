@@ -6,7 +6,7 @@ class Board
     @grid = {}
     columns = [*"A".."J"]
     rows = [*1..10]
-    rows.each {|n| columns.each {|l| @grid["#{l}#{n}".to_sym] = content.new}}
+    rows.each {|n| columns.each {|l| @grid["#{l}#{n < 10 ? "0" : ""}#{n}".to_sym] = content.new}}
     end
 
   def place_ship(ship, start_cell, orientation)
@@ -61,7 +61,7 @@ class Board
      grid.keys.each {|g| ship_values << (grid[g].ship_in_cell ? "S" : "W")}
     display_array = []
     for i in 0..99 
-      display_array << "#{grid.keys[i]}#{i < 90 ? " " : "" }#{hit_values[i]}#{ship_values[i]}"
+      display_array << "#{grid.keys[i]}#{hit_values[i]}#{ship_values[i]}"
     end
     p display_array[0..9]
     p display_array[10..19]
@@ -80,7 +80,7 @@ class Board
     grid.keys.each {|g| hit_values << (grid[g].hit ? (grid[g].ship_in_cell ? "S" : "M") : "-")}
     display_array = []
     for i in 0..99 
-      display_array << "#{grid.keys[i]}#{i < 90 ? " " : "" }#{hit_values[i]}"
+      display_array << "#{grid.keys[i]}#{hit_values[i]}"
     end
     p display_array[0..9]
     p display_array[10..19]
