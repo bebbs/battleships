@@ -2,7 +2,8 @@ require 'cell'
 
 describe Cell do
 
-let(:cell) {Cell.new}
+let(:cell){Cell.new}
+let(:ship_double){double :ship_double}
 
   context 'a cell when initialised should:' do
     
@@ -32,7 +33,6 @@ let(:cell) {Cell.new}
   context 'when receiving a shot' do
     
     it 'on a cell with a ship in it, return a you hit a ship message' do
-      ship_double = double(:ship_double)
       cell.ship_in_cell!(ship_double)
       allow(ship_double).to receive(:hit!)
       allow(ship_double).to receive(:sunk?).and_return(false)
@@ -41,7 +41,6 @@ let(:cell) {Cell.new}
     end
 
     it 'and sinking a ship, return you sunk a ship message' do
-      ship_double = double(:ship_double)
       cell.ship_in_cell!(ship_double)
       allow(ship_double).to receive(:hit!)
       allow(ship_double).to receive(:sunk?).and_return(true)
@@ -57,7 +56,6 @@ let(:cell) {Cell.new}
 
   context 'receiving ships' do
 
-    let(:ship_double) {double :ship_double}
     before(:each) {cell.ship_in_cell!(ship_double)}
 
     it 'should be capable of receiving a ship in it' do
@@ -69,9 +67,8 @@ let(:cell) {Cell.new}
   context 'receiving a specific ship' do
 
     it 'should know which ship object is placed in it' do
-      ship = double(:ship)
-      cell.ship_in_cell!(ship)
-      expect(cell.ship_object).to eq(ship)
+      cell.ship_in_cell!(ship_double)
+      expect(cell.ship_object).to eq(ship_double)
     end
 
   end

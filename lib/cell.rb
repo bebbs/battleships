@@ -10,12 +10,12 @@ class Cell
   def hit!
     raise 'This cell has already been hit.' if hit
     @hit = true
-    if ship_in_cell
-      ship_object.hit!
-      hit_ship_message
-    else
-      p 'You missed!'
-    end
+    ship_in_cell ? hit_ship_actions : (p 'You missed!')
+  end
+
+  def hit_ship_actions
+    ship_object.hit!
+    hit_ship_message
   end
 
   def ship_in_cell!(ship) 
