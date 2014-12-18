@@ -13,7 +13,6 @@ class Cell
     if ship_in_cell
       ship_object.hit!
       hit_ship_message
-      
     else
       'You missed!'
     end

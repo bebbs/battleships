@@ -2,8 +2,8 @@ require 'player'
 
 describe Player do
 
-  let(:player){Player.new(player1, board_double, fleet_double)}
-  let(:player1){double :player1}
+  let(:player){Player.new('Josh', board_double, fleet_double)}
+  # let(:player1){double :player1, name: player1}
   let(:board_double){double :board_double, new: board}
   let(:fleet_double){double :fleet_double, new: fleet}
   let(:board){double :board}
@@ -21,7 +21,7 @@ describe Player do
     end
 
     it 'have a name' do
-      expect(player.name).to eq(player1)
+      expect(player.name).to eq("Josh")
     end
 
   end
@@ -34,9 +34,9 @@ describe Player do
       player.receive_shot(:A1)
     end
 
-    it 'should check to see if there is a winner' do
-      allow(fleet).to receive(:sunk?)
-      expect(player.is_fleet_sunk?).to eq('player1 has lost!')
+    it 'should return a losing message if all players ships were sunk' do
+      allow(fleet).to receive(:sunk?).and_return true
+      expect(player.is_fleet_sunk?).to eq('Josh has lost!')
     end
 
   end
