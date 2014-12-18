@@ -65,16 +65,22 @@ class Board
     row8 = grid.keys[70..79]
     row9 = grid.keys[80..89]
     row10 = grid.keys[90..99]
-    p row1
-    p row2
-    p row3
-    p row4
-    p row5
-    p row6
-    p row7
-    p row8
-    p row9
-    p row10
+    array_of_arrays = []
+    array_of_arrays << row1, row2, row3, row4, row5, row6, row7, row8, row9, row10
+    hit_values = []
+    ship_values = []
+    array_of_arrays.each do |row|
+     row.each {|g| hit_values << (grid[g].hit ? "H" : "-")}
+     row.each {|g| ship_values << (grid[g].ship_in_cell ? "S" : "W")}
+    end
+    
+    display_array = []
+    for i in 0..9 
+      display_array << "#{row1[i]} #{hit_values[i]} #{ship_values[i]}"
+    end
+
+    p display_array
+
   end
 
 
