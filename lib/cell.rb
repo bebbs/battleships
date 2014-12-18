@@ -12,7 +12,11 @@ class Cell
     @hit = true
     if ship_in_cell
       ship_object.hit!
-      'You hit a ship!' 
+      if ship_object.sunk?
+        "You sunk my #{ship_object.type}!"
+      else
+        "You hit my #{ship_object.type}!"
+      end
     else
       'You missed!'
     end

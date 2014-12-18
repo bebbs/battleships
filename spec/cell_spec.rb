@@ -35,7 +35,18 @@ let(:cell) {Cell.new}
       ship_double = double(:ship_double)
       cell.ship_in_cell!(ship_double)
       allow(ship_double).to receive(:hit!)
-      expect(cell.hit!).to eq('You hit a ship!')
+      allow(ship_double).to receive(:sunk?).and_return(false)
+      allow(ship_double).to receive(:type).and_return('battleship')
+      expect(cell.hit!).to eq('You hit my battleship!')
+    end
+
+    it 'and sinking a ship, return you sunk a ship message' do
+      ship_double = double(:ship_double)
+      cell.ship_in_cell!(ship_double)
+      allow(ship_double).to receive(:hit!)
+      allow(ship_double).to receive(:sunk?).and_return(true)
+      allow(ship_double).to receive(:type).and_return('patrol_boat')
+      expect(cell.hit!).to eq('You sunk my patrol_boat!')
     end
 
     it 'on a cell with water in it, return a you missed message' do

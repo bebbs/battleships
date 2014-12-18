@@ -30,10 +30,5 @@ describe Player do
       player.receive_shot(:A1)
     end
 
-    xit 'say whether the shot hit a ship' do
-      # receive_shot on a cell with a ship in it
-      expect(player.receive_shot(:A2)).to eq('You hit a ship!')
-    end
-
   end
 end
