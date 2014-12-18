@@ -4,6 +4,8 @@ describe Fleet do
 
   let(:fleet) {Fleet.new}
 
+  # Should we double each ship?
+
   context 'a fleet when initialised should' do
 
     it 'have 9 ships' do

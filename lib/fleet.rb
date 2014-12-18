@@ -1,5 +1,7 @@
 class Fleet
 
+  attr_reader :ship_array, :ship_status_array
+
   def initialize
     @ship_array = []
     create_ships
@@ -13,14 +15,6 @@ class Fleet
     4.times {@ship_array << Ship.patrol_boat}
   end
 
-  def ship_array
-    @ship_array
-  end
-
-  def ship_status_array
-    @ship_status_array
-  end
-
   def ship_status
     @ship_status_array = []
     ship_array.each do |ship|
@@ -29,6 +23,7 @@ class Fleet
   end
 
   def sunk?
+    ship_status
     ship_status_array.all? {|status| status == true }
   end
 

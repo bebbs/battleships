@@ -7,11 +7,11 @@ let(:cell) {Cell.new}
   context 'a cell when initialised should:' do
     
     it 'contain water' do
-      expect(cell.content).to eq(:water)
+      expect(cell.ship_or_water).to eq(:water)
     end
 
     it 'not be hit' do
-      expect(cell.hit?).to eq(false)
+      expect(cell.hit).to eq(false)
     end
 
   end
@@ -20,7 +20,7 @@ let(:cell) {Cell.new}
 
     before(:each) {cell.hit!}
     it 'hit' do
-      expect(cell).to be_hit
+      expect(cell.hit).to be true
     end
 
     it 'hit only once' do
@@ -34,9 +34,8 @@ let(:cell) {Cell.new}
     let(:ship_double) {double :ship_double}
     before(:each) {cell.ship_in_cell!(ship_double)}
 
-#should rewrite this test to be based on ship_object / ship_or_water
     it 'should be capable of receiving a ship in it' do
-      expect(cell.content).to eq(:ship)
+      expect(cell.ship_or_water).to eq(:ship)
     end
 
   end
