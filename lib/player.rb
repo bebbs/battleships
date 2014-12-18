@@ -22,13 +22,11 @@ class Player
 
   def receive_shot(grid_ref)
     board.cell_object(grid_ref.to_sym).hit!
-    is_fleet_sunk
+    is_fleet_sunk?
   end
 
   def is_fleet_sunk?
-   "#{name} has lost!" if fleet.sunk?
-
-
+   p "#{name} has lost!" if fleet.sunk?
   end
 
 end

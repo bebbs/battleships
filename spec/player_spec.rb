@@ -30,6 +30,7 @@ describe Player do
 
     it 'receive a shot' do
       allow(board).to receive(:cell_object).with(:A1).and_return(cell_double)
+      allow(fleet).to receive(:sunk?).and_return(false)
       expect(board.cell_object(:A1)).to receive(:hit!)
       player.receive_shot(:A1)
     end

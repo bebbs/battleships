@@ -14,7 +14,7 @@ class Cell
       ship_object.hit!
       hit_ship_message
     else
-      'You missed!'
+      p 'You missed!'
     end
   end
 
@@ -31,7 +31,7 @@ class Cell
   end
 
   def hit_ship_message
-      ship_object.sunk? ? "You sank my #{ship_object.type}!" : "You hit my #{ship_object.type}!"
+      p (ship_object.sunk?) ? "You sank my #{ship_object.type}!" : "You hit my #{ship_object.type}!"
   end
 
 
