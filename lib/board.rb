@@ -55,34 +55,29 @@ class Board
   end
 
   def display_own_grid
-    row1 = grid.keys[0..9]
-    row2 = grid.keys[10..19]
-    row3 = grid.keys[20..29]
-    row4 = grid.keys[30..39]
-    row5 = grid.keys[40..49]
-    row6 = grid.keys[50..59]
-    row7 = grid.keys[60..69]
-    row8 = grid.keys[70..79]
-    row9 = grid.keys[80..89]
-    row10 = grid.keys[90..99]
-    array_of_arrays = []
-    array_of_arrays << row1, row2, row3, row4, row5, row6, row7, row8, row9, row10
+
     hit_values = []
     ship_values = []
-    array_of_arrays.each do |row|
-     row.each {|g| hit_values << (grid[g].hit ? "H" : "-")}
-     row.each {|g| ship_values << (grid[g].ship_in_cell ? "S" : "W")}
-    end
-    
+     grid.keys.each {|g| hit_values << (grid[g].hit ? "H" : "-")}
+     grid.keys.each {|g| ship_values << (grid[g].ship_in_cell ? "S" : "W")}
+  
     display_array = []
-    for i in 0..9 
-      display_array << "#{row1[i]} #{hit_values[i]} #{ship_values[i]}"
+    
+    for i in 0..99 
+      display_array << "#{grid.keys[i]}#{i < 90 ? " " : "" }#{hit_values[i]}#{ship_values[i]}"
     end
 
-    p display_array
+    p display_array[0..9]
+    p display_array[10..19]
+    p display_array[20..29]
+    p display_array[30..39]
+    p display_array[40..49]
+    p display_array[50..59]
+    p display_array[60..69]
+    p display_array[70..79]
+    p display_array[80..89]
+    p display_array[90..99]
 
   end
-
-
 
 end
