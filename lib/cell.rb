@@ -10,6 +10,12 @@ class Cell
   def hit!
     raise 'This cell has already been hit.' if hit
     @hit = true
+    if ship_in_cell
+      ship_object.hit!
+      'You hit a ship!' 
+    else
+      'You missed!'
+    end
   end
 
   def ship_in_cell!(ship) 
