@@ -10,10 +10,6 @@ describe Board do
   let(:cellA1){double :cellA1}
   let(:cellA2){double :cellA2}
   let(:cellA3){double :cellA3}
-  let(:cellC4){double :cellC4, ship_or_water: :water}
-  let(:cellD4){double :cellD4, ship_or_water: :water}
-  let(:cellE4){double :cellE4, ship_or_water: :water}
-  let(:cellF4){double :cellF4, ship_or_water: :water}
 
   context 'a grid when initialised should' do
   
@@ -72,6 +68,11 @@ describe Board do
   end
 
   context 'integration test for place_ship method' do
+
+    let(:cellC4){double :cellC4, ship_or_water: :water}
+    let(:cellD4){double :cellD4, ship_or_water: :water}
+    let(:cellE4){double :cellE4, ship_or_water: :water}
+    let(:cellF4){double :cellF4, ship_or_water: :water}
 
     it 'should place a ship in the cells when passed ship, start cell and orientation' do
       board.grid[:C4], board.grid[:D4], board.grid[:E4], board.grid[:F4] = cellC4, cellD4, cellE4, cellF4

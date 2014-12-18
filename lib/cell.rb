@@ -34,5 +34,4 @@ class Cell
       p (ship_object.sunk?) ? "You sank my #{ship_object.type}!" : "You hit my #{ship_object.type}!"
   end
 
-
 end

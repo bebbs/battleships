@@ -2,10 +2,9 @@ require 'player'
 
 describe Player do
 
-  let(:player){Player.new('Josh', board_double, fleet_double)}
-  # let(:player1){double :player1, name: player1}
-  let(:board_double){double :board_double, new: board}
-  let(:fleet_double){double :fleet_double, new: fleet}
+  let(:player){Player.new('Josh', board_class, fleet_class)}
+  let(:board_class){double :board_class, new: board}
+  let(:fleet_class){double :fleet_class, new: fleet}
   let(:board){double :board}
   let(:fleet){double :fleet}
   let(:cell_double){double :cell_double}
@@ -30,7 +29,7 @@ describe Player do
 
     it 'receive a shot' do
       allow(board).to receive(:cell_object).with(:A1).and_return(cell_double)
-      allow(fleet).to receive(:sunk?).and_return(false)
+      allow(fleet).to receive(:sunk?).and_return false
       expect(board.cell_object(:A1)).to receive(:hit!)
       player.receive_shot(:A1)
     end
