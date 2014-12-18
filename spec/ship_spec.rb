@@ -22,7 +22,7 @@ describe Ship do
   context 'returns error if' do
     
     it 'not recognised ship parameter is passed' do
-      expect(lambda{Ship.banana}).to raise_error(NoMethodError, "undefined method `banana' for Ship:Class")
+      expect{Ship.banana}.to raise_error(NoMethodError, "undefined method `banana' for Ship:Class")
     end
 
   end
