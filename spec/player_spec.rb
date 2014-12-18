@@ -8,7 +8,7 @@ describe Player do
   let(:fleet_double){double :fleet_double, new: fleet}
   let(:board){double :board}
   let(:fleet){double :fleet}
-
+  let(:cell_double){double :cell_double}
 
   context 'a player can' do
 
@@ -22,6 +22,12 @@ describe Player do
 
     it 'have a name' do
       expect(player.name).to eq(player1)
+    end
+
+    it 'receive a shot' do
+      allow(board).to receive(:cell_object).with(:A1).and_return(cell_double)
+      expect(board.cell_object(:A1)).to receive(:hit!)
+      player.receive_shot(:A1)
     end
 
   end

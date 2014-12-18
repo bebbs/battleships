@@ -50,4 +50,8 @@ class Board
     grid[grid_ref].ship_in_cell!(ship)
   end
 
+  def cell_object(grid_ref)
+    grid[grid_ref]
+  end
+
 end

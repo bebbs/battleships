@@ -20,4 +20,8 @@ class Player
     @fleet = fleet_content.new
   end
 
+  def receive_shot(grid_ref)
+    board.cell_object(grid_ref.to_sym).hit!
+  end
+
 end
