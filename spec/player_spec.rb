@@ -24,6 +24,8 @@ describe Player do
       expect(player.name).to eq(player1)
     end
 
+  end
+
   context 'taking shots' do
 
     it 'receive a shot' do
@@ -33,10 +35,9 @@ describe Player do
     end
 
     it 'should check to see if there is a winner' do
-      expect(fleet).to receive(:sunk?)
+      allow(fleet).to receive(:sunk?)
+      expect(player.is_fleet_sunk?).to eq('player1 has lost!')
     end
-
-  end
 
   end
 end

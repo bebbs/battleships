@@ -24,4 +24,10 @@ class Player
     board.cell_object(grid_ref.to_sym).hit!
   end
 
+  def is_fleet_sunk?
+   '#{player.name} has lost!' if fleet.sunk?
+
+
+  end
+
 end
