@@ -6,7 +6,7 @@ class Board
     @grid = {}
     columns = [*"A".."J"]
     rows = [*1..10]
-    columns.each {|l| rows.each {|n| @grid["#{l}#{n}".to_sym] = content.new}}
+    rows.each {|n| columns.each {|l| @grid["#{l}#{n}".to_sym] = content.new}}
     end
 
   def place_ship(ship, start_cell, orientation)
@@ -53,5 +53,30 @@ class Board
   def cell_object(grid_ref)
     grid[grid_ref]
   end
+
+  def display_own_grid
+    row1 = grid.keys[0..9]
+    row2 = grid.keys[10..19]
+    row3 = grid.keys[20..29]
+    row4 = grid.keys[30..39]
+    row5 = grid.keys[40..49]
+    row6 = grid.keys[50..59]
+    row7 = grid.keys[60..69]
+    row8 = grid.keys[70..79]
+    row9 = grid.keys[80..89]
+    row10 = grid.keys[90..99]
+    p row1
+    p row2
+    p row3
+    p row4
+    p row5
+    p row6
+    p row7
+    p row8
+    p row9
+    p row10
+  end
+
+
 
 end
