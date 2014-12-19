@@ -2,7 +2,7 @@ class Board
 
   attr_reader :grid
 
-  def initialize(content)
+  def initialize(content = Cell)
     @grid = {}
     columns = [*"A".."J"]
     rows = [*1..10]
@@ -27,7 +27,7 @@ class Board
   end
 
   def next_cell(coords, orientation)
-    orientation == :vertical ? coords.last.next.to_sym : next_horizontal(coords)
+    orientation == :vertical ? coords.last.next : next_horizontal(coords)
   end
 
   def next_horizontal(coords)
@@ -53,6 +53,8 @@ class Board
   def cell_object(grid_ref)
     grid[grid_ref]
   end
+
+  # methods below were quickly written to generate a view in the terminal of the grid to assist placing ships and shooting, not intended for use
 
   def display_own_grid
     hit_values = []
