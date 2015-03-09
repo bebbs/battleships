@@ -5,19 +5,19 @@ describe Cell do
 let(:cell){Cell.new}
 let(:ship_double){double :ship_double}
 
-  context 'a cell when initialised should:' do
+  context 'a cell when initialised' do
     
-    it 'contain water' do
+    it 'contains water' do
       expect(cell.ship_or_water).to eq(:water)
     end
 
-    it 'not be hit' do
+    it 'isn\'t hit' do
       expect(cell.hit).to eq(false)
     end
 
   end
 
-  context 'a cell can be:' do
+  context 'a cell can be' do
 
     before(:each) {cell.hit!}
     it 'hit' do
@@ -32,7 +32,7 @@ let(:ship_double){double :ship_double}
 
   context 'when receiving a shot' do
     
-    it 'on a cell with a ship in it, return a you hit a ship message' do
+    it 'on a cell with a ship in it, returns a you hit a ship message' do
       cell.ship_in_cell!(ship_double)
       allow(ship_double).to receive(:hit!)
       allow(ship_double).to receive(:sunk?).and_return(false)
@@ -40,7 +40,7 @@ let(:ship_double){double :ship_double}
       expect(cell.hit!).to eq('You hit my battleship!')
     end
 
-    it 'and sinking a ship, return you sunk a ship message' do
+    it 'and sinking a ship, returns a you sunk a ship message' do
       cell.ship_in_cell!(ship_double)
       allow(ship_double).to receive(:hit!)
       allow(ship_double).to receive(:sunk?).and_return(true)
@@ -48,7 +48,7 @@ let(:ship_double){double :ship_double}
       expect(cell.hit!).to eq('You sank my patrol_boat!')
     end
 
-    it 'on a cell with water in it, return a you missed message' do
+    it 'on a cell with water in it, returns a you missed message' do
       expect(cell.hit!).to eq('You missed!')
     end
 
@@ -58,7 +58,7 @@ let(:ship_double){double :ship_double}
 
     before(:each) {cell.ship_in_cell!(ship_double)}
 
-    it 'should be capable of receiving a ship in it' do
+    it 'is capable of receiving a ship in it' do
       expect(cell.ship_or_water).to eq(:ship)
     end
 
@@ -66,7 +66,7 @@ let(:ship_double){double :ship_double}
 
   context 'receiving a specific ship' do
 
-    it 'should know which ship object is placed in it' do
+    it 'knows which ship object is placed in it' do
       cell.ship_in_cell!(ship_double)
       expect(cell.ship_object).to eq(ship_double)
     end

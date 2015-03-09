@@ -12,7 +12,7 @@ describe Fleet do
 
   end
 
-  context 'a fleet should know when it\'s' do
+  context 'a fleet knows when' do
 
     it 'ships are all sunk' do
       ship1 = double :ship1, sunk?: true
@@ -28,7 +28,7 @@ describe Fleet do
       expect(fleet).not_to be_sunk
     end
 
-    it 'if some, but not all ships are sunk' do
+    it 'some, but not all ships are sunk' do
       ship1 = double :ship1, sunk?: true
       ship2 = double :ship2, sunk?: false
       allow(fleet).to receive(:ship_array).and_return([ship1, ship2])

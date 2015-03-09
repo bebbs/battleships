@@ -4,7 +4,7 @@ describe Ship do
 
   let(:ship) { Ship.battleship }
 
-  context 'can be created with a' do
+  context 'created with a' do
     it 'size' do
       expect(ship.size).to eq(4)
     end
@@ -13,7 +13,7 @@ describe Ship do
       expect(ship.type).to eq(:battleship)
     end
 
-    it 'hits received' do
+    it 'number of hits received' do
       expect(ship.hits_received).to eq(0)
     end
 

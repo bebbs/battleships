@@ -9,17 +9,17 @@ describe Player do
   let(:fleet){double :fleet}
   let(:cell_double){double :cell_double}
 
-  context 'a player can' do
+  context 'a player' do
 
-    it 'have a board' do
+    it 'has a board' do
       expect(player.board).to eq(board)
     end
 
-    it 'have a fleet' do
+    it 'has a fleet' do
       expect(player.fleet).to eq(fleet)
     end
 
-    it 'have a name' do
+    it 'has a name' do
       expect(player.name).to eq("Josh")
     end
 
@@ -34,7 +34,7 @@ describe Player do
       player.receive_shot(:A1)
     end
 
-    it 'should return a losing message if all players ships were sunk' do
+    it 'returns a losing message if all players ships were sunk' do
       allow(fleet).to receive(:sunk?).and_return true
       expect(player.is_fleet_sunk?).to eq('Josh has lost!')
     end

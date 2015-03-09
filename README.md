@@ -1,10 +1,19 @@
 #Battleships!
 
-Andy Newman (andyg72) and Josh Bebbington (bebbs)
-
 This was our project for Week 2 of Makers Academy. Our task was to design and implement the classes and their methods for a Battleships-style game. Our learning objectives were to use London-style test driven development (TDD) with RSpec, object-oriented design principles (OOP), and Ruby.
 
 ##How to play
+
+Clone the game locally:
+```
+git clone https://github.com/bebbs/battleships.git
+cd battleships
+```
+
+Run the test suite:
+```
+rspec
+```
 
 To play the game in IRB:
 ```shell
@@ -37,6 +46,9 @@ To shoot, call receive_shot with a grid reference on your opponent:
 player2_name.receive_shot(:A01)
 ```
 *The game is won when all of a players ships are sunk.*
+
+##Collaborators
+[Josh Bebbington](https://github.com/bebbs) and [Andy Newman](https://github.com/andyg72) of the December '14 cohort at [Makers Academy](https://www.makersacademy.com)
 
 ##Domain Model / CRC
 
@@ -73,6 +85,3 @@ Responsibility | Collaborators
 hit cell       | Cell
 place Ships    | Fleet, Ships, Cells, Board
 display game   | Player, Cells, Board
-
-
-
